@@ -1,0 +1,124 @@
+<idea-plugin>
+  <id>zhengkuan.yzk.auto.transform.encoding</id>
+  <name>Auto Transform Encoding</name>
+  <version>1.6</version>
+  <vendor email="1329750315@qq.com" url="https://github.com/YangZhengkuan/auto.transform.encoding">YangZhengkuan
+    杨征宽（晚滨）
+  </vendor>
+
+  <description><![CDATA[
+      <h5>Auto Transform Encoding</h5>
+      Identify the encoding of the current file in the editor, and transform the file encoding to the identified encoding automatically.<br>
+      Get rid of the the cumbersome steps you need to click the file encoding menu.<br>
+
+      <h5>文件编码自动转码插件 (新版本IDEA适配)</h5>
+      自动识别文件的编码，并进行转码显示<br>
+      摆脱需要在右下角编码菜单点击选择的繁琐步骤<br>
+    ]]></description>
+
+  <change-notes><![CDATA[
+      1.6
+      <ul>
+      <li>New version adaptation</li>
+      </ul>
+      1.5
+      <ul>
+      <li>Ignore exception log</li>
+      </ul>
+      1.4
+      <ul>
+      <li>When user use the keyboard-shortcut(Alt + K) or menu to call this plugin, the action of this plugin is: If current encoding is not UTF-8, then transform to UTF-8; If current encoding is UTF-8, then transform to GBK. And the process of transform encoding automatically remain unchanged, it will also transform the file to the identified encoding automatically.</li>
+      <li>Change the usage of file encoding cache. About the identified file, if current encoding in the cache is different with right encoding, this plugin won't transform the file to the cached wrong encoding forcibly. Then, when the identified encoding is wrong, user can change encoding manually.</li>
+      <li>If the encoding identified by the jar of 'cpdetector' belongs to Big5、GB18030、GB2312, the file encoding will be transformed to GBK.</li>
+      </ul>
+      1.3
+      <ul>
+      <li>Upload the project to the github: https://github.com/YangZhengkuan/auto.transform.encoding</li>
+      </ul>
+      1.2
+      <ul>
+      <li>Update plugin description.</li>
+      </ul>
+      1.1
+      <ul>
+      <li>Add the file encoding cache. Our plugin won't identify the the encoding of the file repeatedly.</li>
+      <li>Add the transform encoding judgment logic. When the existing encoding is correct, skip the encoding setting step.</li>
+      </ul>
+      1.0
+      <ul>
+      <li>Identify the encoding of the current file in the editor, and transform the file encoding to the identified encoding automatically.</li>
+      <li>Support the menu in the group of 'EditMenu', the anchor is the last. The menu name is 'AutoTransformEncoding'.</li>
+      <li>Support the keyboard-shortcut: Alt + K.</li>
+      </ul>
+
+      1.6
+      <ul>
+      <li>新版本IDEA适配</li>
+      </ul>
+      1.5
+      <ul>
+      <li>忽略异常日志打印</li>
+      </ul>
+      1.4
+      <ul>
+      <li>当用户通过快捷键（Alt + K）或菜单方式调用本插件时，本插件执行的动作为：若当前文件为非UTF-8编码，则切换为UTF-8编码；若当前文件编码为UTF-8，则切换为GBK编码。本插件的自动转码逻辑保持不变，会将文件自动转为所识别的编码。</li>
+      <li>修正缓存使用方式，已经识别过编码的文件，在缓存中的编码和正确编码不一致时，不会强行将编码转为缓存中的错误编码。这样，当本插件识别的编码不正确时，用户可以手动更改文件的编码，不会被本插件强行转为错误的编码。</li>
+      <li>将基于第三方包cpdetector识别的Big5、GB18030、GB2312编码均转为GBK编码。</li>
+      </ul>
+      1.3
+      <ul>
+      <li>上传项目到Github: https://github.com/YangZhengkuan/auto.transform.encoding</li>
+      </ul>
+      1.2
+      <ul>
+      <li>更新插件文档说明</li>
+      </ul>
+      1.1
+      <ul>
+      <li>添加文件编码缓存，不会重新识别已知编码的文件</li>
+      <li>增加转码判断逻辑，现有编码即为正确编码时，跳过编码设置步骤</li>
+      </ul>
+      1.0
+      <ul>
+      <li>自动识别并转换文件编码，丝滑般体验</li>
+      <li>支持 菜单 Edit → AutoTransformEncoding(最后一项) 调用</li>
+      <li>支持 Alt + K 快捷键调用</li>
+      </ul>
+    ]]>
+  </change-notes>
+
+  <!-- please see https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html for description -->
+  <idea-version since-build="173.0"/>
+
+  <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
+       on how to target different products -->
+  <depends>com.intellij.modules.platform</depends>
+
+  <project-components>
+  <!--    <component>-->
+  <!--      <implementation-class>-->
+  <!--        zhengkuan.yzk.handler.FileChangedComponent-->
+  <!--      </implementation-class>-->
+  <!--    </component>-->
+  </project-components>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
+
+  <!-- Project-level listeners -->
+  <projectListeners>
+    <listener class="zhengkuan.yzk.listeners.FileChangedListener"
+              topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
+  </projectListeners>
+
+  <actions>
+    <!-- Add your actions here -->
+    <action id="zhengkuan.zhengkuan.yzk.auto.transform.encoding" class="zhengkuan.yzk.TransformEncodingAction"
+            text="Auto Transform Encoding" description="Auto Transform File Encoding">
+      <add-to-group group-id="EditMenu" anchor="last"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="alt k"/>
+    </action>
+  </actions>
+
+</idea-plugin>
