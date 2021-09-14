@@ -77,6 +77,7 @@ Identify the encoding of the current file in the editor, and transform the file 
 - 1.3
 
     - Upload the project to the github: https://github.com/YangZhengkuan/auto.transform.encoding
+    - New version adaptation, Github: https://github.com/YangZhengkuan/auto.transform.encoding.new
 
 - 1.2
     - Update plugin description.
@@ -107,6 +108,7 @@ Identify the encoding of the current file in the editor, and transform the file 
 - 1.3
 
     - 上传项目到Github: https://github.com/YangZhengkuan/auto.transform.encoding
+    - 新版本IDEA适配：Github: https://github.com/YangZhengkuan/auto.transform.encoding.new
     
 - 1.2
 
